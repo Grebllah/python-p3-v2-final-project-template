@@ -1,4 +1,5 @@
 from models.__init__ import CURSOR, CONN
+from models.card_type import Card_type
 
 class Card:
     all = {}
@@ -27,6 +28,7 @@ class Card:
     def type(self, type):
         if isinstance(type, str):
             self._type = type
+        else: raise ValueError("Card type does not exist. Try and create it first!")
 
     @classmethod
     def create_table(cls):

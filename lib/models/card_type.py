@@ -1,14 +1,16 @@
 from models.__init__ import CURSOR, CONN
 
 class Card_type:
-    def __init__(self, name, id):
-        self.name = name
-        self.id = id
+    all = {}
+    all_used = []
 
+    def __init__(self, name):
+        self.name = name
+    
     @property
     def name(self):
         return self._name
-
+    
     @name.setter
     def name(self, name):
         if isinstance(name, str) and len(name)>= 1 and len(name) < 20:
@@ -17,7 +19,7 @@ class Card_type:
 
     @classmethod
     def create_table(cls):
-        """ Create a new table to persist the attributes of Card instances """
+        """ Create a new table to persist the attributes of card_type instances """
         sql = """
             CREATE TABLE IF NOT EXISTS card_types (
             id INTEGER PRIMARY KEY,
@@ -29,7 +31,7 @@ class Card_type:
 
     @classmethod
     def drop_table(cls):
-        """ Drop the table that persists Card_type instances """
+        """ Drop the table that persists card-type instances """
         sql = """
             DROP TABLE IF EXISTS card_types;
         """
@@ -38,40 +40,40 @@ class Card_type:
         CONN.commit()
 
     def save(self):
-        """ Insert a new row with the name, card type, and id values of the current Card_type object.
+        """ Insert a new row with the name and id values of the current card_type object.
         Update object id attribute using the primary key value of new row.
         Save the object in local dictionary using table row's Primary Key as dictionary key"""
         sql = """
-                INSERT INTO Card_types (name, id)
-                VALUES (?, ?)
+                INSERT INTO card_types (name)
+                VALUES (?)
         """
 
-        CURSOR.execute(sql, (self.name))
+        CURSOR.execute(sql, (self.name,))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
     def update(self):
-        """Update the table row corresponding to the current Card_type instance."""
+        """Update the table row corresponding to the current card_type instance."""
         sql = """
-            UPDATE Card_types
+            UPDATE card_types
             SET name = ?, id = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.card_type, self.id))
+        CURSOR.execute(sql, (self.name, self.id))
         CONN.commit()
 
     def delete(self):
-        """Delete the table row corresponding to the current Card instance,
+        """Delete the table row corresponding to the current card_type instance,
         delete the dictionary entry, and reassign id attribute"""
 
         sql = """
-            DELETE FROM Card_types
+            DELETE FROM card_types
             WHERE id = ?
         """
 
-        CURSOR.execute(sql, (self.id,))
+        CURSOR.execute(sql, (self.id))
         CONN.commit()
 
         # Delete the dictionary entry using id as the key
@@ -81,47 +83,49 @@ class Card_type:
         self.id = None
 
     @classmethod
-    def create(cls, name, type):
-        """ Initialize a new Card instance and save the object to the database """
-        card = cls(name, type)
-        card.save()
-        return card
+    def create(cls, name):
+        """ Initialize a new card_type instance and save the object to the database """
+        if name not in Card_type.all:
+            card_type = cls(name)
+            card_type.save()
+            return card_type
+        else: raise ValueError("Card type must be unused and valid!")
 
     @classmethod
     def instance_from_db(cls, row):
-        """Return an Card object having the attribute values from the table row."""
+        """Return an card_type object having the attribute values from the table row."""
 
         # Check the dictionary for existing instance using the row's primary key
-        card = cls.all.get(row[0])
-        if card:
+        card_type = cls.all.get(row[0])
+        if card_type:
             # ensure attributes match row values in case local instance was modified
-            card.name = row[1]
-            card.type = row[2]
+            card_type.name = row[1]
         else:
             # not in dictionary, create new instance and add to dictionary
-            card = cls(row[1], row[2])
-            card.id = row[0]
-            cls.all[card.id] = card
-        return card
+            card_type = cls(row[1])
+            card_type.id = row[0]
+            cls.all[card_type.id] = card_type
+        return card_type
+
 
     @classmethod
     def get_all(cls):
-        """Return a list containing one Card object per table row"""
+        """Return a list containing one card_type object per table row"""
         sql = """
             SELECT *
-            FROM cards
+            FROM card_types
         """
 
         rows = CURSOR.execute(sql).fetchall()
 
         return [cls.instance_from_db(row) for row in rows]
-
+    
     @classmethod
     def find_by_id(cls, id):
-        """Return Card object corresponding to the table row matching the specified primary key"""
+        """Return card_type object corresponding to the table row matching the specified primary key"""
         sql = """
             SELECT *
-            FROM cards
+            FROM card_types
             WHERE id = ?
         """
 
@@ -130,10 +134,10 @@ class Card_type:
 
     @classmethod
     def find_by_name(cls, name):
-        """Return Card object corresponding to first table row matching specified name"""
+        """Return card_type object corresponding to first table row matching specified name"""
         sql = """
             SELECT *
-            FROM cards
+            FROM card_types
             WHERE name is ?
         """
 
