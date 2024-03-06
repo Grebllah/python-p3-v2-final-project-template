@@ -1,14 +1,16 @@
 from models.__init__ import CURSOR, CONN
 from models.card_type import Card_type
+from models.ability import Ability
 
 class Card:
     all = {}
 
     TYPES = ["unit", "spell"]
 
-    def __init__(self, name, type):
+    def __init__(self, name, type, ability = ""):
         self.name = name
         self.type = type
+        self.ability = ability
 
     @property
     def name(self):
@@ -28,7 +30,17 @@ class Card:
     def type(self, type):
         if isinstance(type, str):
             self._type = type
-        else: raise ValueError("Card type does not exist. Try and create it first!")
+        else: raise ValueError("Card type must be a string.")
+
+    @property
+    def ability (self):
+        return self._ability
+
+    @ability.setter
+    def ability(self, ability):
+        if isinstance(ability, str):
+            self._ability = ability
+        else: raise ValueError("Card ability must be a string.")
 
     @classmethod
     def create_table(cls):
@@ -37,7 +49,8 @@ class Card:
             CREATE TABLE IF NOT EXISTS cards (
             id INTEGER PRIMARY KEY,
             name TEXT,
-            type TEXT
+            type TEXT,
+            ability TEXT
             )
         """
         CURSOR.execute(sql)
@@ -58,11 +71,11 @@ class Card:
         Update object id attribute using the primary key value of new row.
         Save the object in local dictionary using table row's Primary Key as dictionary key"""
         sql = """
-                INSERT INTO cards (name, type)
-                VALUES (?, ?)
+                INSERT INTO cards (name, type, ability)
+                VALUES (?, ?, ?)
         """
 
-        CURSOR.execute(sql, (self.name, self.type))
+        CURSOR.execute(sql, (self.name, self.type, self.ability))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
@@ -72,10 +85,10 @@ class Card:
         """Update the table row corresponding to the current Card instance."""
         sql = """
             UPDATE cards
-            SET name = ?, card_type = ?, id = ?
+            SET name = ?, type = ?, ability = ? id = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.card_type, self.id))
+        CURSOR.execute(sql, (self.name, self.type, self.ability, self.id))
         CONN.commit()
 
     def delete(self):
@@ -97,9 +110,9 @@ class Card:
         self.id = None
 
     @classmethod
-    def create(cls, name, type):
+    def create(cls, name, type, ability):
         """ Initialize a new Card instance and save the object to the database """
-        card = cls(name, type)
+        card = cls(name, type, ability)
         card.save()
         return card
 
@@ -113,9 +126,10 @@ class Card:
             # ensure attributes match row values in case local instance was modified
             card.name = row[1]
             card.type = row[2]
+            card.ability = row[3]
         else:
             # not in dictionary, create new instance and add to dictionary
-            card = cls(row[1], row[2])
+            card = cls(row[1], row[2], row[3])
             card.id = row[0]
             cls.all[card.id] = card
         return card
