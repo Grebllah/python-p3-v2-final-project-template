@@ -2,14 +2,18 @@
 
 from helpers import (
     exit_program,
-    list_card_types,
     list_cards,
+    list_card_types,
+    list_card_abilities,
     find_card_by_name,
     list_cards_of_type,
     list_cards_of_ability,
     create_new_card,
     create_new_card_type,
-    delete_card
+    create_new_card_ability,
+    delete_card,
+    delete_card_type,
+    delete_card_ability
 )
 
 
@@ -24,17 +28,25 @@ def main():
         elif choice == "2":
             list_card_types()
         elif choice == "3":
-            find_card_by_name()
+            list_card_abilities()
         elif choice == "4":
-            list_cards_of_type()
+            find_card_by_name()
         elif choice == "5":
-            list_cards_of_ability()
+            list_cards_of_type()
         elif choice == "6":
-            create_new_card()
+            list_cards_of_ability()
         elif choice == "7":
-            create_new_card_type()
+            create_new_card()
         elif choice == "8":
+            create_new_card_type()
+        elif choice == "9":
+            create_new_card_ability()
+        elif choice == "10":
             delete_card()
+        elif choice == "11":
+            delete_card_type()
+        elif choice == "12":
+            delete_card_ability()
         else:
             print("Invalid choice")
 
@@ -42,16 +54,18 @@ def main():
 def menu():
     print("Please select an option:")
     print("0. Exit the program")
-    print("1. List all cards")
-    print("2. List all card types")
-    print("3. Find card by name")
-    print("4. List cards by card type")
-    print("5. List cards by card ability")
-    print("6. Create a new card")
-    print("7. Create a new card type")
-    print("8. Delete a Card")
-    
-
+    print("1. List all Cards")
+    print("2. List all card Types")
+    print("3. List all card Abilities")
+    print("4. Find card by name")
+    print("5. List cards by card type")
+    print("6. List cards by card ability")
+    print("7. Create a new card")
+    print("8. Create a new card type")
+    print("9. Create a new card ability")
+    print("10. Delete a Card")
+    print("11. Delete card Type")
+    print("12. Delete card Ability")
 
 if __name__ == "__main__":
     main()

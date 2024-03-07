@@ -11,7 +11,12 @@ def list_cards():
 def list_card_types():
     types = Card_type.get_all()
     for type in types:
-        print(type.name)
+        print(type.name, type.id)
+
+def list_card_abilities():
+    abilities = Ability.get_all()
+    for ability in abilities:
+        print(ability.name, ability.id)
 
 def list_cards_of_type():
     type = input("Enter Card Type: ")
@@ -51,6 +56,22 @@ def create_new_card_ability():
 def delete_card():
     id_ = input("Enter the card's id: ")
     if card := Card.find_by_id(id_):
+        card.delete()
+        print(f'card {id_} deleted')
+    else:
+        print(f'card {id_} not found')
+
+def delete_card_type():
+    id_ = input("Enter the card type's ID: ")
+    if card := Card_type.find_by_id(id_):
+        card.delete()
+        print(f'card {id_} deleted')
+    else:
+        print(f'card {id_} not found')
+
+def delete_card_ability():
+    id_ = input("Enter the card ability's id: ")
+    if card := Ability.find_by_id(id_):
         card.delete()
         print(f'card {id_} deleted')
     else:
