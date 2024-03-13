@@ -1,6 +1,5 @@
 from models.__init__ import CURSOR, CONN
 
-
 class Ability:
 
     # Dictionary of objects saved to the database.
@@ -36,7 +35,7 @@ class Ability:
             self._effect = effect
         else:
             raise ValueError(
-                "effect must be a non-empty string"
+                "Effect must be a non-empty string."
             )
         
     @classmethod
@@ -69,7 +68,6 @@ class Ability:
                 INSERT INTO abilities (name, effect)
                 VALUES (?, ?)
         """
-
         CURSOR.execute(sql, (self.name, self.effect))
         CONN.commit()
 

@@ -1,135 +1,29 @@
-# Phase 3 CLI+ORM Project Template
-
-## Learning Goals
-
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
-
----
-
-## Introduction
-
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
-
-Take a look at the directory structure:
-
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── models
-    │   ├── __init__.py
-    │   └── model_1.py
-    ├── cli.py
-    ├── debug.py
-    └── helpers.py
-```
-
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
-
----
-
-## Generating Your Environment
-
-You might have noticed in the file structure- there's already a Pipfile!
-
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
-
-```console
-pipenv install
-pipenv shell
-```
-
----
-
-## Generating Your CLI
-
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
-
-The project template has a sample CLI in `lib/cli.py` that looks like this:
-
-```py
-# lib/cli.py
-
-from helpers import (
-    exit_program,
-    helper_1
-)
-
-
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
-
-
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
-
-
-if __name__ == "__main__":
-    main()
-```
-
-The helper functions are located in `lib/helpers.py`:
-
-```py
-# lib/helpers.py
-
-def helper_1():
-    print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
-
----
-
 ## Updating README.md
+
+The card game creation and storage app:
+This project is an Object Relational Mapping app using Python, which utilizes a Command Line Interface to allow a user to navigate, create, modify, or delete Instances of various classes representing Card Types, Cards, and Card abilities for any future potential card-based game. To run, open the lib/cli.py file using a python shell or terminal.
+
+There are 3 classes the user can interact with:
+    1. Card Type - this class is where the user can create, update, or delete new Card types: essentially a way of categorizing the cards into various groups (historically in games like these this would be units/troops/creatures and spells/actions, but can be more involved, such as sub-types and type combinations, or more traditional, like the 4 suits)
+    2. Card Abilities - This is where the user can create, update, and delete abilities for the Cards. This is where the user can create Keywords or titles for the abilities, plus a short description of how the ability might work. This can range from something like a Unit having flying or double attack, or an Uno-like ability like "reverse" or "skip", or a value such as Ace, 2-9, Jack, Queen, King in a deck of cards.
+    3. Card - The Card class is the most important one, the one that utilizes the others. this is where the user can create, update, and delete individual cards, an object that has a Card Type and an Ability attached to it.
+
+    When the CLI program is initiated, the user will have several options. Inputting the number next to each option selects it. Some choices require further inputs. listed below are the choices and their explanations:
+    Exit the program - ends the loop, closing the CLI and returning to the terminal.
+    List all Cards - Prints a list of all current saved Card instances.
+    List all card Types - Prints a list of all current saved Card Type instances.
+    List all card Abilities - Prints a list of all current saved Card Ability instances.
+    Find card by name - Asks the user to input a name, and then seaches saved Cards for one with the inputted name, and returns that or an appropriate error.
+    List cards by card type - Prints a list of Cards that match Card Type with a user-inputted word.
+    List cards by card ability - Prints a list of Cards that match Card Ability with a user-inputted word.
+    Create a new card - Requests user input for card type and ability, then creates a new Card with the inputted choices as type and ability, provided they have already been created.
+    Create a new card type - requests user input for a name then creates a new Card Type object. Do this before creating new Cards of chosen type.
+    Create a new card ability - requests user input for a name and description, then creates a new Ability object. Do this before creating new cards with chosen Ability.
+    Delete a Card - requests a user input for Card Id number, then deletes the card associated with this number, or returns an error is no such object exists.
+    Delete card Type - requests a user input for Card Type Id number, then deletes the card type associated with this number, or returns an error is no such object exists.
+    Delete card Ability - requests a user input for Card Ability Id number, then deletes the ability associated with this number, or returns an error is no such object exists.
+
+
 
 `README.md` is a Markdown file that should describe your project. You will
 replace the contents of this `README.md` file with a description of **your**
@@ -154,18 +48,6 @@ models.)
 Screenshots and links to resources that you used throughout are also useful to
 users and collaborators, but a little more syntactically complicated. Only add
 these in if you're feeling comfortable with Markdown.
-
----
-
-## Conclusion
-
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you off
-to a good start with your Phase 3 Project.
-
-Happy coding!
-
----
 
 ## Resources
 
