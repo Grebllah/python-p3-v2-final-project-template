@@ -1,5 +1,7 @@
 # lib/cli.py
-
+from models.card_type import Card_type
+from models.card import Card
+from models.card import Ability
 from helpers import (
     exit_program,
     list_cards,
@@ -16,8 +18,10 @@ from helpers import (
     delete_card_ability
 )
 
-
 def main():
+    Card_type.create_table()
+    Card.create_table()
+    Ability.create_table()
     while True:
         menu()
         choice = input("> ")
@@ -49,7 +53,6 @@ def main():
             delete_card_ability()
         else:
             print("Invalid choice")
-
 
 def menu():
     print("Please select an option:")

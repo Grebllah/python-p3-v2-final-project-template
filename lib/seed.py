@@ -10,8 +10,6 @@ def seed_database():
     Card_type.create_table()
     Card.create_table()
     Ability.create_table()
-
-# create seed data
     units = Card_type.create("Unit")
     spells = Card_type.create("Spell")
     landmarks = Card_type.create("Landmark")
@@ -21,7 +19,6 @@ def seed_database():
     card3 = Card.create("Archer", "Unit", "")
     card4 = Card.create("Fireball", "Spell", "")
     card5 = Card.create("Lightning Bolt", "Spell", "")
-
 
 seed_database()
 print("Database seeded")
