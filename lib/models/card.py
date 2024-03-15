@@ -18,7 +18,7 @@ class Card:
 
     @name.setter
     def name(self, name):
-        if isinstance(name, str) and len(name)>= 1 and len(name) < 20:
+        if isinstance(name, str) and len(name) >= 1 and len(name) < 20:
             self._name = name
         else: raise ValueError("Name must be a string between 1-20 characters")
         

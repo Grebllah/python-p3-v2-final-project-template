@@ -14,14 +14,15 @@ When the CLI program is initiated, the user will have several options. Inputting
 3. List all card Types - Prints a list of all current saved Card Type instances.
 4. List all card Abilities - Prints a list of all current saved Card Ability instances.
 5. Find card by name - Asks the user to input a name, and then seaches saved Cards for one with the inputted name, and returns that or an appropriate error.
-6. List cards by card type - Prints a list of Cards that match Card Type with a user-inputted word.
-7. List cards by card ability - Prints a list of Cards that match Card Ability with a user-inputted word.
-8. Create a new card - Requests user input for card type and ability, then creates a new Card with the inputted choices as type and ability, provided they have already been created.
-9. Create a new card type - requests user input for a name then creates a new Card Type object. Do this before creating new Cards of chosen type.
-10. Create a new card ability - requests user input for a name and description, then creates a new Ability object. Do this before creating new cards with chosen Ability.
-11. Delete a Card - requests a user input for Card Id number, then deletes the card associated with this number, or returns an error is no such object exists.
-12. Delete card Type - requests a user input for Card Type Id number, then deletes the card type associated with this number, or returns an error is no such object exists.
-13. Delete card Ability - requests a user input for Card Ability Id number, then deletes the ability associated with this number, or returns an error is no such object exists.
+6. Find card by ID number - Cards created are automatically given an unused ID number, user is asked to input a number, and then a search finds a saved Card with the input ID number, or an error if no such card exists.
+7. List cards by card type - Prints a list of Cards that match Card Type with a user-inputted word.
+8. List cards by card ability - Prints a list of Cards that match Card Ability with a user-inputted word.
+9. Create a new card - Requests user input for card type and ability, then creates a new Card with the inputted choices as type and ability, provided they have already been created.
+10. Create a new card type - requests user input for a name then creates a new Card Type object. Do this before creating new Cards of chosen type.
+11. Create a new card ability - requests user input for a name and description, then creates a new Ability object. Do this before creating new cards with chosen Ability.
+12. Delete a Card - requests a user input for Card Id number, then deletes the card associated with this number, or returns an error is no such object exists.
+13. Delete card Type - requests a user input for Card Type Id number, then deletes the card type associated with this number, or returns an error is no such object exists.
+14. Delete card Ability - requests a user input for Card Ability Id number, then deletes the ability associated with this number, or returns an error is no such object exists.
 
 `README.md` is a Markdown file that should describe your project. You will
 replace the contents of this `README.md` file with a description of **your**

@@ -8,6 +8,7 @@ from helpers import (
     list_card_types,
     list_card_abilities,
     find_card_by_name,
+    find_card_by_id,
     list_cards_of_type,
     list_cards_of_ability,
     create_new_card,
@@ -36,20 +37,22 @@ def main():
         elif choice == "4":
             find_card_by_name()
         elif choice == "5":
-            list_cards_of_type()
+            find_card_by_id()
         elif choice == "6":
-            list_cards_of_ability()
+            list_cards_of_type()
         elif choice == "7":
-            create_new_card()
+            list_cards_of_ability()
         elif choice == "8":
-            create_new_card_type()
+            create_new_card()
         elif choice == "9":
-            create_new_card_ability()
+            create_new_card_type()
         elif choice == "10":
-            delete_card()
+            create_new_card_ability()
         elif choice == "11":
-            delete_card_type()
+            delete_card()
         elif choice == "12":
+            delete_card_type()
+        elif choice == "13":
             delete_card_ability()
         else:
             print("Invalid choice")
@@ -61,6 +64,7 @@ def menu():
     print("2. List all card Types")
     print("3. List all card Abilities")
     print("4. Find card by name")
+    print("5. Find card by ID number")
     print("5. List cards by card type")
     print("6. List cards by card ability")
     print("7. Create a new card")

@@ -36,6 +36,13 @@ def find_card_by_name():
         f"Name: ", {card.name}, "Type: ", {card.type}, "Ability: ", {card.ability}, "ID: ", {card.id}
     ) if card else print("Card not found.")    
     
+def find_card_by_id():
+    id = input("Enter Card Id: ")
+    card = Card.find_by_id(id)
+    print(
+        f"Name: ", {card.name}, "Type: ", {card.type}, "Ability: ", {card.ability}, "ID: ", {card.id}
+    ) if card else print("Card not found.")  
+
 def create_new_card():
     name = input("Enter Name for your new card: ")
     type = input("Enter Type of your new card: ")
