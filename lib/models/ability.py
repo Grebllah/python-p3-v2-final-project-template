@@ -10,7 +10,7 @@ class Ability:
         self.effect = effect
 
     def __repr__(self):
-        return (f"<Ability {self.id}: {self.name}, {self.effect}>")
+        return (f"<Ability {self.id}: Name: {self.name}, Effect: {self.effect}>")
 
     @property
     def name(self):
@@ -74,6 +74,7 @@ class Ability:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
+
     def update(self):
         """Update the table row corresponding to the current Ability instance."""
         sql = """
@@ -135,7 +136,6 @@ class Ability:
         """
 
         rows = CURSOR.execute(sql).fetchall()
-
         return [cls.instance_from_db(row) for row in rows]
 
     @classmethod

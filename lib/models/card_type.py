@@ -2,7 +2,6 @@ from models.__init__ import CURSOR, CONN
 
 class Card_type:
     all = {}
-    all_used = []
 
     def __init__(self, name):
         self.name = name

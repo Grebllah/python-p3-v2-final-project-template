@@ -12,12 +12,12 @@ def list_cards():
 def list_card_types():
     types = Card_type.get_all()
     for type in types:
-        print(type.name, type.id)
+        print(type.name)
 
 def list_card_abilities():
     abilities = Ability.get_all()
     for ability in abilities:
-        print(ability.name, ability.id)
+        print(ability.name)
 
 def list_cards_of_type():
     type = input("Enter Card Type: ")
