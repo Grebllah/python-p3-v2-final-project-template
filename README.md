@@ -23,31 +23,3 @@ When the CLI program is initiated, the user will have several options. Inputting
 12. Delete a Card - requests a user input for Card Id number, then deletes the card associated with this number, or returns an error is no such object exists.
 13. Delete card Type - requests a user input for Card Type Id number, then deletes the card type associated with this number, or returns an error is no such object exists.
 14. Delete card Ability - requests a user input for Card Ability Id number, then deletes the ability associated with this number, or returns an error is no such object exists.
-
-`README.md` is a Markdown file that should describe your project. You will
-replace the contents of this `README.md` file with a description of **your**
-actual project.
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this assignments's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README serves as a template. Replace the contents of this file to describe
-the important files in your project and describe what they do. Each Python file
-that you edit should get at least a paragraph, and each function should be
-described with a sentence or two.
-
-Describe your actual CLI script first, and with a good level of detail. The rest
-should be ordered by importance to the user. (Probably functions next, then
-models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
-## Resources
-
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
