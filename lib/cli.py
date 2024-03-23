@@ -1,7 +1,7 @@
 # lib/cli.py
 from models.card_type import Card_type
 from models.card import Card
-from models.card import Ability
+from models.ability import Ability
 from helpers import (
     exit_program,
     list_cards,

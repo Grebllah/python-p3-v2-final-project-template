@@ -1,6 +1,4 @@
 from models.__init__ import CURSOR, CONN
-from models.card_type import Card_type
-from models.ability import Ability
 
 class Card:
     all = {}
