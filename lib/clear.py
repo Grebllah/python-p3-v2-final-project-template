@@ -1,6 +1,6 @@
 from models.card_type import Card_type
 from models.card import Card
-from models.card import Ability
+from models.ability import Ability
 
 def clear_database():
     Card.drop_table()

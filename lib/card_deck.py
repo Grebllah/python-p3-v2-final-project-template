@@ -1,6 +1,6 @@
 from models.card_type import Card_type
 from models.card import Card
-from models.card import Ability
+from models.ability import Ability
 
 def create_deck():
     Card.drop_table()
